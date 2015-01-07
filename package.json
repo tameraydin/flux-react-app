@@ -4,10 +4,21 @@
   "description": "My project description",
   "main": "dist/index.js",
   "dependencies": {
-    "react": "~0.8"
+    "react": "^0.12.2"
   },
   "devDependencies": {
-    "jsxc": "~0.1.6"
+    "browserify": "^8.0.3",
+    "gulp": "^3.8.10",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.4.3",
+    "gulp-footer": "^1.0.5",
+    "gulp-header": "^1.2.2",
+    "gulp-ignore": "^1.2.1",
+    "gulp-react": "^2.0.0",
+    "gulp-run-sequence": "^0.3.2",
+    "jsxc": "~0.1.6",
+    "reactify": "^0.17.1",
+    "vinyl-source-stream": "^1.0.0"
   },
   "scripts": {
     "start": "jsxc --watch src/ lib/",

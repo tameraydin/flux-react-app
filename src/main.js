@@ -1,0 +1,1 @@
+var mainModule = require('./mainModule/scripts/components');

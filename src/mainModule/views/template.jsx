@@ -1,0 +1,1 @@
+<span className="MyComponent">Test</span>
