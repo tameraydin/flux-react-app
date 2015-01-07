@@ -3,10 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+
   <link rel="stylesheet" media="screen" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
 </head>
+
 <body>
-<div id="main" class="container"></div>
-<script src="js/main.js"></script>
+  <div id="container" class="container"></div>
+
+  <!-- @if ENV="DEV" -->
+  <script src="js/main.js"></script>
+  <!-- @endif -->
+
+  <!-- @if ENV="PROD" -->
+  <script src="js/main.min.js"></script>
+  <!-- @endif -->
 </body>
 </html>
