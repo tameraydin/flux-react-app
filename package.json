@@ -1,28 +1,23 @@
 {
-  "name": "a-flux-project",
+  "name": "my-flux-app",
   "version": "0.1.0",
-  "description": "My project description",
-  "main": "dist/index.js",
+  "private": true,
+  "description": "My flux application",
   "dependencies": {
-    "react": "^0.12.2"
+    "flux": "^2.0.1",
+    "object-assign": "^2.0.0",
+    "react": "^0.12.2",
+    "react-async": "^2.0.1",
+    "react-router-component": "^0.23.2"
   },
   "devDependencies": {
     "browserify": "^8.0.3",
     "gulp": "^3.8.10",
     "gulp-clean": "^0.3.1",
-    "gulp-concat": "^2.4.3",
-    "gulp-footer": "^1.0.5",
     "gulp-header": "^1.2.2",
-    "gulp-ignore": "^1.2.1",
-    "gulp-react": "^2.0.0",
     "gulp-run-sequence": "^0.3.2",
-    "jsxc": "~0.1.6",
-    "reactify": "^0.17.1",
+    "reactify": "^0.13.2",
     "vinyl-source-stream": "^1.0.0"
-  },
-  "scripts": {
-    "start": "jsxc --watch src/ lib/",
-    "build": "jsxc src/ lib/"
   },
   "author": "You"
 }
