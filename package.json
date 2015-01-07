@@ -1,0 +1,17 @@
+{
+  "name": "a-flux-project",
+  "version": "0.1.0",
+  "description": "My project description",
+  "main": "dist/index.js",
+  "dependencies": {
+    "react": "~0.8"
+  },
+  "devDependencies": {
+    "jsxc": "~0.1.6"
+  },
+  "scripts": {
+    "start": "jsxc --watch src/ lib/",
+    "build": "jsxc src/ lib/"
+  },
+  "author": "You"
+}
