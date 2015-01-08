@@ -36,6 +36,11 @@ gulp.task('html', function() {
     .pipe(gulp.dest(PATHS.DIST));
 });
 
+gulp.task('images', function() {
+  return gulp.src(PATHS.SOURCE + 'img/*.*')
+    .pipe(gulp.dest(PATHS.DIST + 'img/'));
+});
+
 gulp.task('browserify', function() {
   browserify('./' + PATHS.SOURCE + 'js/main.js')
     .transform(reactify)
@@ -46,8 +51,8 @@ gulp.task('browserify', function() {
 
 gulp.task('init', function() {
   tasks = DEVELOPMENT ?
-    ['clean', 'html', 'browserify'] :
-    ['clean', 'html', 'browserify'];
+    ['clean', 'html', 'images', 'browserify'] :
+    ['clean', 'html', 'images', 'browserify'];
   runSequence.apply(this, tasks);
 });
 

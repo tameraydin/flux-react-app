@@ -1,21 +1,22 @@
 /** @jsx React.DOM */
 var React = require('react');
-var AppStore = require('../../stores/app-store.js');
-var RemoveFromCart = require('./app-removefromcart.js');
-var Increase = require('./app-increase.js');
-var Decrease = require('./app-decrease.js');
-var StoreWatchMixin = require('../../mixins/StoreWatchMixin.js');
+var AppStore = require('../../stores/app-store');
+var RemoveFromCart = require('./app-removefromcart');
+var Increase = require('./app-increase');
+var Decrease = require('./app-decrease');
+var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
+Link = require('react-router-component').Link;
 
-function cartItems() {
+function cartItems(){
   return {items: AppStore.getCart()}
 }
 
 var Cart =
   React.createClass({
     mixins:[StoreWatchMixin(cartItems)],
-    render:function() {
+    render:function(){
       var total=0;
-      var items = this.state.items.map(function(item, i) {
+      var items = this.state.items.map(function(item, i){
         var subtotal = item.cost*item.qty;
         total+=subtotal;
         return (
@@ -32,6 +33,7 @@ var Cart =
           )
       })
       return (
+        <div>
           <table className="table table-hover">
             <thead>
               <tr>
@@ -52,6 +54,8 @@ var Cart =
               </tr>
             </tfoot>
           </table>
+          <Link href='/'>Continue Shopping</Link>
+        </div>
         )
     }
   });

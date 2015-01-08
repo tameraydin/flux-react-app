@@ -3,7 +3,8 @@ var AppConstants = require('../constants/app-constants');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
-var CHANGE_EVENT = 'change';
+var CHANGE_EVENT = "change";
+
 
 var _catalog = [];
 
@@ -13,24 +14,24 @@ for (var i = 0; i < 8; i++) {
     'title':'Widget #' + i,
     'summary': 'This is an awesome widget!',
     'description': 'Lorem ipsum dolor sit amet consectetur adipisicing',
-    'img': '/assets/product.png',
+    'img': '/img/product.png',
     'cost': i
   });
 }
 
 var _cartItems = [];
 
-function _removeItem(index) {
+function _removeItem(index){
   _cartItems[index].inCart = false;
   _cartItems.splice(index, 1);
 }
 
-function _increaseItem(index) {
+function _increaseItem(index){
   _cartItems[index].qty++;
 }
 
-function _decreaseItem(index) {
-  if(_cartItems[index].qty>1) {
+function _decreaseItem(index){
+  if(_cartItems[index].qty>1){
     _cartItems[index].qty--;
   }
   else {
@@ -39,45 +40,58 @@ function _decreaseItem(index) {
 }
 
 
-function _addItem(item) {
-  if(!item.inCart) {
+function _addItem(item){
+  if(!item.inCart){
     item['qty'] = 1;
     item['inCart'] = true;
     _cartItems.push(item);
   }
   else {
-    _cartItems.forEach(function(cartItem, i) {
-      if(cartItem.id===item.id) {
+    _cartItems.forEach(function(cartItem, i){
+      if(cartItem.id===item.id){
         _increaseItem(i);
       }
     });
   }
 }
 
+function _cartTotals(){
+  var qty =0, total = 0;
+  _cartItems.forEach(function(cartItem){
+    qty+=cartItem.qty;
+    total+=cartItem.qty*cartItem.cost;
+  });
+  return {'qty': qty, 'total': total};
+}
+
 
 var AppStore = assign({}, EventEmitter.prototype, {
-  emitChange:function() {
-    this.emit(CHANGE_EVENT);
+  emitChange:function(){
+    this.emit(CHANGE_EVENT)
   },
 
-  addChangeListener:function(callback) {
-    this.on(CHANGE_EVENT, callback);
+  addChangeListener:function(callback){
+    this.on(CHANGE_EVENT, callback)
   },
 
-  removeChangeListener:function(callback) {
+  removeChangeListener:function(callback){
     this.removeListener(CHANGE_EVENT, callback)
   },
 
-  getCart:function() {
-    return _cartItems;
+  getCart:function(){
+    return _cartItems
   },
 
-  getCatalog:function() {
-    return _catalog;
+  getCatalog:function(){
+    return _catalog
   },
 
-  dispatcherIndex: AppDispatcher.register(function(action) {
-    switch(action.actionType) {
+  getCartTotals:function(){
+    return _cartTotals();
+  },
+
+  dispatcherIndex: AppDispatcher.register(function(action){
+    switch(action.actionType){
       case AppConstants.ADD_ITEM:
         _addItem(action.item);
         break;

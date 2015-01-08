@@ -1,12 +1,12 @@
 /** @jsx React.DOM */
 var React = require('react');
-var AppActions = require('../../actions/app-actions.js');
+var AppActions = require('../../actions/app-actions');
 var RemoveFromCart =
   React.createClass({
-    handleClick:function() {
+    handleClick:function(){
       AppActions.removeItem(this.props.index);
     },
-    render:function() {
+    render:function(){
       return <button onClick={this.handleClick}>x</button>
     }
   });

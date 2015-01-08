@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Header = require('./header/app-header.js');
+var Header = require('./header/app-header');
 
 
 var Template =
   React.createClass({
-    render:function() {
+    render:function(){
       return  (
         <div className="container">
           <Header />
