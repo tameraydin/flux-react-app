@@ -14,6 +14,8 @@ var jshint = require('gulp-jshint');
 var to5 = require('gulp-6to5'); // this also handles JSX transform
 var packageJSON  = require('./package');
 var jshintConfig = packageJSON.jshintConfig;
+var react = require('gulp-react');
+var cache = require('gulp-cached');
 
 var PATHS = {
   SOURCE: './src/',
@@ -45,16 +47,24 @@ gulp.task('css', function () {
     .pipe(gulp.dest(PATHS.BUILD + 'css/'));
 });
 
+gulp.task('jshint', function() {
+  return gulp.src(PATHS.SOURCE + 'js/**/*.js')
+    .pipe(cache('jshint'))
+    .pipe(react())
+    .on('error', function(err) {
+      console.error('JSX ERROR in ' + err.fileName);
+      console.error(err.message);
+      this.end();
+    })
+    .pipe(jshint(jshintConfig))
+    .pipe(jshint.reporter('default'))
+    .pipe(jshint.reporter('fail'));
+});
+
 gulp.task('es6to5', function() {
   return gulp.src(PATHS.SOURCE + 'js/**/*.js')
     .pipe(to5())
     .pipe(gulp.dest(PATHS.BUILD + 'js/es5'));
-});
-
-gulp.task('jshint', function() {
-  return gulp.src(PATHS.BUILD + 'js/es5/**/*.js')
-    .pipe(jshint(jshintConfig))
-    .pipe(jshint.reporter('default'));
 });
 
 gulp.task('cleanJs', function() {
@@ -74,8 +84,8 @@ gulp.task('browserify', ['es6to5'], function() {
 
 gulp.task('js', function(cb) {
   return runSequence(
-    'es6to5',
     'jshint',
+    'es6to5',
     'browserify',
     'cleanJs',
     cb);
