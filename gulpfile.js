@@ -5,6 +5,7 @@ var preprocess = require('gulp-preprocess');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var reactify = require('reactify');
+var to5 = require('gulp-6to5'); // this also handles JSX transform
 
 var PATHS = {
   SOURCE: 'src/',
@@ -41,21 +42,35 @@ gulp.task('images', function() {
     .pipe(gulp.dest(PATHS.DIST + 'img/'));
 });
 
-gulp.task('browserify', function() {
-  browserify({
-      entries: ['./' + PATHS.SOURCE + 'js/main.js'],
+gulp.task('es6to5', function() {
+  return gulp.src('./' + PATHS.SOURCE + 'js/**/*.js')
+    .pipe(to5())
+    .pipe(gulp.dest('./' + PATHS.DIST + 'js/es5'));
+});
+
+gulp.task('clean-es6', function() {
+  return gulp.src('./' + PATHS.DIST + 'js/es5/')
+    .pipe(clean());
+});
+
+gulp.task('browserify', ['es6to5'], function() {
+  return browserify({
+      entries: ['./' + PATHS.DIST + 'js/es5/main.js'],
       debug: DEVELOPMENT
     })
-    .transform(reactify)
     .bundle()
     .pipe(source('js/main.js'))
     .pipe(gulp.dest(PATHS.DIST));
 });
 
+gulp.task('js', function() {
+  runSequence.apply(this, ['es6to5', 'browserify', 'clean-es6']);
+});
+
 gulp.task('startBuild', function() {
   tasks = DEVELOPMENT ?
-    ['clean', 'html', 'images', 'browserify'] :
-    ['clean', 'html', 'images', 'browserify'];
+    ['clean', 'html', 'images', 'js'] :
+    ['clean', 'html', 'images', 'js'];
   runSequence.apply(this, tasks);
 });
 
