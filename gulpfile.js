@@ -9,11 +9,12 @@ var uglify = require('gulp-uglify');
 var buffer = require('vinyl-buffer');
 var rename = require('gulp-rename');
 var minifyHtml = require('gulp-minify-html');
+var sass = require('gulp-sass');
 var to5 = require('gulp-6to5'); // this also handles JSX transform
 
 var PATHS = {
-  SOURCE: 'src/',
-  DIST: 'dist/'
+  SOURCE: './src/',
+  DIST: './dist/'
 };
 
 var CONTEXT = {
@@ -54,25 +55,31 @@ gulp.task('html', function() {
   runSequence.apply(this, tasks);
 });
 
-gulp.task('images', function() {
+gulp.task('img', function() {
   return gulp.src(PATHS.SOURCE + 'img/*.*')
     .pipe(gulp.dest(PATHS.DIST + 'img/'));
 });
 
+gulp.task('css', function () {
+  gulp.src(PATHS.SOURCE + 'css/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest(PATHS.DIST + 'css/'));
+});
+
 gulp.task('es6to5', function() {
-  return gulp.src('./' + PATHS.SOURCE + 'js/**/*.js')
+  return gulp.src(PATHS.SOURCE + 'js/**/*.js')
     .pipe(to5())
-    .pipe(gulp.dest('./' + PATHS.DIST + 'js/es5'));
+    .pipe(gulp.dest(PATHS.DIST + 'js/es5'));
 });
 
 gulp.task('clean-es6', function() {
-  return gulp.src('./' + PATHS.DIST + 'js/es5/')
+  return gulp.src(PATHS.DIST + 'js/es5/')
     .pipe(clean());
 });
 
 gulp.task('browserify', ['es6to5'], function() {
   var b = browserify({
-      entries: ['./' + PATHS.DIST + 'js/es5/main.js'],
+      entries: [PATHS.DIST + 'js/es5/main.js'],
       debug: DEVELOPMENT
     });
   var bndl = b.bundle();
@@ -101,7 +108,8 @@ gulp.task('startBuild', function() {
   runSequence(
     'clean',
     'html',
-    'images',
+    'img',
+    'css',
     'js');
 });
 
