@@ -91,14 +91,18 @@ gulp.task('browserify', ['es6to5'], function() {
 });
 
 gulp.task('js', function() {
-  runSequence.apply(this, ['es6to5', 'browserify', 'clean-es6']);
+  runSequence(
+    'es6to5',
+    'browserify',
+    'clean-es6');
 });
 
 gulp.task('startBuild', function() {
-  tasks = DEVELOPMENT ?
-    ['clean', 'html', 'images', 'js'] :
-    ['clean', 'html', 'images', 'js'];
-  runSequence.apply(this, tasks);
+  runSequence(
+    'clean',
+    'html',
+    'images',
+    'js');
 });
 
 gulp.task('build', function(env) {
