@@ -4,18 +4,16 @@
   <meta charset="UTF-8">
   <title>Document</title>
 
+  <!-- build:css app.min.css -->
   <link rel="stylesheet" media="screen" href="css/main.css">
+  <!-- endbuild -->
 </head>
 
 <body>
   <div id="container" class="container"></div>
 
-  <!-- @if ENV="DEV" -->
+  <!-- build:js app.min.js -->
   <script src="js/main.js"></script>
-  <!-- @endif -->
-
-  <!-- @if ENV="PROD" -->
-  <script src="js/main.min.js"></script>
-  <!-- @endif -->
+  <!-- endbuild -->
 </body>
 </html>
