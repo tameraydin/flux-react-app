@@ -7,7 +7,9 @@ var Decrease =
       AppActions.decreaseItem(this.props.index);
     },
     render:function(){
-      return <button onClick={this.handleClick}>-</button>
+      return (
+        <button onClick={this.handleClick}>-</button>
+        );
     }
   });
 module.exports = Decrease;

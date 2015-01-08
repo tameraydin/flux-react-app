@@ -8,7 +8,7 @@ var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 var Link = require('react-router-component').Link;
 
 function cartItems(){
-  return {items: AppStore.getCart()}
+  return {items: AppStore.getCart()};
 }
 
 var Cart =
@@ -30,8 +30,8 @@ var Cart =
             </td>
             <td>${subtotal}</td>
           </tr>
-          )
-      })
+          );
+      });
       return (
         <div>
           <table className="table table-hover">
@@ -56,7 +56,7 @@ var Cart =
           </table>
           <Link href='/'>Continue Shopping</Link>
         </div>
-        )
+        );
     }
   });
 module.exports = Cart;

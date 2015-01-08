@@ -7,7 +7,9 @@ var RemoveFromCart =
       AppActions.removeItem(this.props.index);
     },
     render:function(){
-      return <button onClick={this.handleClick}>x</button>
+      return (
+        <button onClick={this.handleClick}>x</button>
+        );
     }
   });
 module.exports = RemoveFromCart;

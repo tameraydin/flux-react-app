@@ -21,7 +21,7 @@ var APP =
             <Location path="/item/:item" handler={CatalogDetail} />
           </Locations>
         </Template>
-        )
+        );
     }
   });
 module.exports = APP;

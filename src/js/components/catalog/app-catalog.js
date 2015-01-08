@@ -6,7 +6,7 @@ var CatalogItem = require('./app-catalogitem');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
 
 function getCatalog(){
-  return {items: AppStore.getCatalog()}
+  return {items: AppStore.getCatalog()};
 }
 
 var Catalog =
@@ -14,13 +14,16 @@ var Catalog =
     mixins: [new StoreWatchMixin(getCatalog)],
     render:function(){
       var items = this.state.items.map(function(item){
-        return <CatalogItem item={item} />
-      })
+        return (
+          <CatalogItem item={item} />
+          );
+      });
+
       return (
           <div className="row">
           {items}
           </div>
-        )
+        );
     }
   });
 module.exports = Catalog;

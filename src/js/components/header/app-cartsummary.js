@@ -8,7 +8,6 @@ function CartTotals(){
   return AppStore.getCartTotals();
 }
 
-
 var CartSummary =
   React.createClass({
     mixins:[StoreWatchMixin(CartTotals)],
@@ -21,8 +20,7 @@ var CartSummary =
             Cart Items: {this.state.qty} / ${this.state.total}
             </Link>
         </div>
-
-        )
+        );
     }
   });
 module.exports = CartSummary;

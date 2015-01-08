@@ -12,7 +12,7 @@ var Header =
             <CartSummary />
           </div>
         </div>
-        )
+        );
     }
   });
 module.exports = Header;

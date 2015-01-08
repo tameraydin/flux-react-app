@@ -30,7 +30,7 @@ var CatalogDetail =
               <Link href={'/'} className="btn btn-default">Continue Shopping</Link>
             </div>
           </div>
-        )
+        );
     }
   });
 

@@ -11,7 +11,7 @@ var Template =
           <Header />
           {this.props.children}
         </div>
-        )
+        );
     }
   });
 module.exports = Template;

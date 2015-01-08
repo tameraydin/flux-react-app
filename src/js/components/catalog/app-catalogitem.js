@@ -22,8 +22,7 @@ var CatalogItem =
             <AddToCart item={this.props.item} />
             </div>
           </div>
-
-        )
+        );
     }
   });
 module.exports = CatalogItem;

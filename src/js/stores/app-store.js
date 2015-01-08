@@ -5,7 +5,6 @@ var assign = require('object-assign');
 
 var CHANGE_EVENT = "change";
 
-
 var _catalog = [];
 
 for (var i = 0; i < 8; i++) {
@@ -42,8 +41,8 @@ function _decreaseItem(index){
 
 function _addItem(item){
   if(!item.inCart){
-    item['qty'] = 1;
-    item['inCart'] = true;
+    item.qty = 1;
+    item.inCart = true;
     _cartItems.push(item);
   }
   else {
@@ -67,23 +66,23 @@ function _cartTotals(){
 
 var AppStore = assign({}, EventEmitter.prototype, {
   emitChange:function(){
-    this.emit(CHANGE_EVENT)
+    this.emit(CHANGE_EVENT);
   },
 
   addChangeListener:function(callback){
-    this.on(CHANGE_EVENT, callback)
+    this.on(CHANGE_EVENT, callback);
   },
 
   removeChangeListener:function(callback){
-    this.removeListener(CHANGE_EVENT, callback)
+    this.removeListener(CHANGE_EVENT, callback);
   },
 
   getCart:function(){
-    return _cartItems
+    return _cartItems;
   },
 
   getCatalog:function(){
-    return _catalog
+    return _catalog;
   },
 
   getCartTotals:function(){
@@ -112,6 +111,6 @@ var AppStore = assign({}, EventEmitter.prototype, {
 
     return true;
   })
-})
+});
 
 module.exports = AppStore;
