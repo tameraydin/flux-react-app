@@ -42,14 +42,17 @@ gulp.task('images', function() {
 });
 
 gulp.task('browserify', function() {
-  browserify('./' + PATHS.SOURCE + 'js/main.js')
+  browserify({
+      entries: ['./' + PATHS.SOURCE + 'js/main.js'],
+      debug: DEVELOPMENT
+    })
     .transform(reactify)
     .bundle()
     .pipe(source('js/main.js'))
     .pipe(gulp.dest(PATHS.DIST));
 });
 
-gulp.task('init', function() {
+gulp.task('startBuild', function() {
   tasks = DEVELOPMENT ?
     ['clean', 'html', 'images', 'browserify'] :
     ['clean', 'html', 'images', 'browserify'];
@@ -58,10 +61,10 @@ gulp.task('init', function() {
 
 gulp.task('build', function(env) {
   DEVELOPMENT = true;
-  gulp.run('init');
+  gulp.run('startBuild');
 });
 
 gulp.task('deploy', function(env) {
   DEVELOPMENT = false;
-  gulp.run('init');
+  gulp.run('startBuild');
 });
