@@ -5,13 +5,15 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var reactify = require('reactify');
 var uglify = require('gulp-uglify');
-var buffer = require('vinyl-buffer');
 var rename = require('gulp-rename');
 var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
 var sass = require('gulp-sass');
 var usemin = require('gulp-usemin');
+var jshint = require('gulp-jshint');
 var to5 = require('gulp-6to5'); // this also handles JSX transform
+var packageJSON  = require('./package');
+var jshintConfig = packageJSON.jshintConfig;
 
 var PATHS = {
   SOURCE: './src/',
@@ -49,7 +51,13 @@ gulp.task('es6to5', function() {
     .pipe(gulp.dest(PATHS.BUILD + 'js/es5'));
 });
 
-gulp.task('clean-es6', function() {
+gulp.task('jshint', function() {
+  return gulp.src(PATHS.BUILD + 'js/es5/**/*.js')
+    .pipe(jshint(jshintConfig))
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('cleanJs', function() {
   return gulp.src(PATHS.BUILD + 'js/es5/')
     .pipe(clean());
 });
@@ -67,8 +75,9 @@ gulp.task('browserify', ['es6to5'], function() {
 gulp.task('js', function(cb) {
   return runSequence(
     'es6to5',
+    'jshint',
     'browserify',
-    'clean-es6',
+    'cleanJs',
     cb);
 });
 
