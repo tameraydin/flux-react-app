@@ -82,6 +82,10 @@ gulp.task('usemin', function() {
     .pipe(gulp.dest(PATHS.DIST));
 });
 
+gulp.task('watch', function() {
+  gulp.watch('src/**/*.*', ['build']);
+});
+
 gulp.task('build', function(cb) {
   development = deploying ? false : true;
   return runSequence(
