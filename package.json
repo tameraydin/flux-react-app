@@ -15,9 +15,13 @@
     "gulp": "^3.8.10",
     "gulp-6to5": "^2.0.0",
     "gulp-clean": "^0.3.1",
+    "gulp-minify-html": "^0.1.8",
     "gulp-preprocess": "^1.2.0",
+    "gulp-rename": "^1.2.0",
     "gulp-run-sequence": "^0.3.2",
+    "gulp-uglify": "^1.0.2",
     "reactify": "^0.13.2",
+    "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0"
   },
   "author": "You"

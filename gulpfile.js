@@ -5,6 +5,10 @@ var preprocess = require('gulp-preprocess');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var reactify = require('reactify');
+var uglify = require('gulp-uglify');
+var buffer = require('vinyl-buffer');
+var rename = require('gulp-rename');
+var minifyHtml = require('gulp-minify-html');
 var to5 = require('gulp-6to5'); // this also handles JSX transform
 
 var PATHS = {
@@ -29,12 +33,25 @@ gulp.task('clean', function() {
     .pipe(clean({force: true}));
 });
 
-gulp.task('html', function() {
+gulp.task('copyHtml', function() {
   return gulp.src(PATHS.SOURCE + '*.html')
     .pipe(preprocess({
       context: CONTEXT[DEVELOPMENT ? 'DEV' : 'PROD']
     }))
     .pipe(gulp.dest(PATHS.DIST));
+});
+
+gulp.task('minifyHtml', function() {
+  return gulp.src(PATHS.DIST + '*.html')
+    .pipe(minifyHtml())
+    .pipe(gulp.dest(PATHS.DIST));
+});
+
+gulp.task('html', function() {
+  tasks = DEVELOPMENT ?
+    ['copyHtml'] :
+    ['copyHtml', 'minifyHtml'];
+  runSequence.apply(this, tasks);
 });
 
 gulp.task('images', function() {
@@ -54,13 +71,23 @@ gulp.task('clean-es6', function() {
 });
 
 gulp.task('browserify', ['es6to5'], function() {
-  return browserify({
+  var b = browserify({
       entries: ['./' + PATHS.DIST + 'js/es5/main.js'],
       debug: DEVELOPMENT
-    })
-    .bundle()
-    .pipe(source('js/main.js'))
-    .pipe(gulp.dest(PATHS.DIST));
+    });
+  var bndl = b.bundle();
+  var src = bndl.pipe(source('js/main.js'));
+
+  if (!DEVELOPMENT) {
+    return src
+      .pipe(buffer())
+      .pipe(uglify())
+      .pipe(rename({suffix: '.min'}))
+      .pipe(gulp.dest(PATHS.DIST));
+
+  } else {
+    return src.pipe(gulp.dest(PATHS.DIST));
+  }
 });
 
 gulp.task('js', function() {
