@@ -2,7 +2,11 @@
   "name": "generator-flux-react",
   "version": "0.1.0",
   "description": "A React application boilerplate with Flux architecture",
-  "keywords": ["yeoman-generator"],
+  "keywords": [
+    "yeoman-generator",
+    "react",
+    "flux"
+  ],
   "dependencies": {
     "flux": "^2.0.1",
     "object-assign": "^2.0.0",
