@@ -1,8 +1,8 @@
 {
-  "name": "my-flux-app",
+  "name": "generator-flux-react",
   "version": "0.1.0",
-  "private": true,
-  "description": "My flux application",
+  "description": "A React application boilerplate with Flux architecture",
+  "keywords": ["yeoman-generator"],
   "dependencies": {
     "flux": "^2.0.1",
     "object-assign": "^2.0.0",
@@ -37,5 +37,18 @@
       "document"
     ]
   },
-  "author": "You"
+  "homepage": "http://tameraydin.github.io/generator-flux-react",
+  "bugs": {
+    "url": "https://github.com/tameraydin/generator-flux-react/issues"
+  },
+  "readmeFilename": "readme.md",
+  "author": "Tamer Aydin",
+  "license": {
+    "type": "MIT",
+    "url": "http://tameraydin.mit-license.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tameraydin/generator-flux-react.git"
+  }
 }
