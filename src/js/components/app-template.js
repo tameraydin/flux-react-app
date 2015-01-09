@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Header = require('./header/app-header');
-
+var Header = require('./header/header');
+var Link = require('react-router-component').Link;
 
 var Template =
   React.createClass({
-    render:function(){
+    render: function() {
       return  (
         <div className="container">
           <Header />
@@ -14,4 +14,5 @@ var Template =
         );
     }
   });
+
 module.exports = Template;
