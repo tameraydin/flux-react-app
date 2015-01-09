@@ -9,39 +9,7 @@
   ],
   "main": "app/index.js",
   "dependencies": {
-    "flux": "^2.0.1",
-    "object-assign": "^2.0.0",
-    "react": "^0.12.2",
-    "react-async": "^2.0.1",
-    "react-router-component": "^0.23.2",
     "yeoman-generator": "^0.18.6"
-  },
-  "devDependencies": {
-    "browserify": "^8.0.3",
-    "gulp": "^3.8.10",
-    "gulp-6to5": "^2.0.0",
-    "gulp-cached": "^1.0.1",
-    "gulp-clean": "^0.3.1",
-    "gulp-jshint": "^1.9.0",
-    "gulp-minify-css": "^0.3.11",
-    "gulp-minify-html": "^0.1.8",
-    "gulp-react": "^2.0.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-run-sequence": "^0.3.2",
-    "gulp-sass": "^1.2.4",
-    "gulp-uglify": "^1.0.2",
-    "gulp-usemin": "^0.3.8",
-    "reactify": "^0.13.2",
-    "vinyl-source-stream": "^1.0.0"
-  },
-  "jshintConfig": {
-    "strict": false,
-    "globalstrict": true,
-    "predef": [
-      "require",
-      "module",
-      "document"
-    ]
   },
   "homepage": "http://tameraydin.github.io/generator-flux-react",
   "bugs": {
