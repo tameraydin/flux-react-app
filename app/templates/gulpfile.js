@@ -18,7 +18,7 @@ var react = require('gulp-react');
 var cache = require('gulp-cached');
 
 var PATHS = {
-  SOURCE: './app/',
+  SOURCE: './src/',
   DIST: './dist/',
   BUILD: './build/'
 };
