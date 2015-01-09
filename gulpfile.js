@@ -18,7 +18,7 @@ var react = require('gulp-react');
 var cache = require('gulp-cached');
 
 var PATHS = {
-  SOURCE: './src/',
+  SOURCE: './app/',
   DIST: './dist/',
   BUILD: './build/'
 };
@@ -102,7 +102,7 @@ gulp.task('usemin', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/**/*.*', ['build']);
+  gulp.watch(PATHS.SOURCE + '**/*.*', ['build']);
 });
 
 gulp.task('build', function(cb) {
