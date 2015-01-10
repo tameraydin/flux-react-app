@@ -1,5 +1,5 @@
 {
-  "name": "generator-flux-react",
+  "name": "generator-flux-react-app",
   "version": "0.1.0",
   "description": "A React application boilerplate with Flux architecture",
   "keywords": [
@@ -13,9 +13,9 @@
     "yeoman-generator": "^0.18.6",
     "yosay": "^1.0.1"
   },
-  "homepage": "http://github.com/tameraydin/generator-flux-react",
+  "homepage": "http://github.com/tameraydin/generator-flux-react-app",
   "bugs": {
-    "url": "https://github.com/tameraydin/generator-flux-react/issues"
+    "url": "https://github.com/tameraydin/generator-flux-react-app/issues"
   },
   "readmeFilename": "readme.md",
   "author": "Tamer Aydin",
@@ -25,6 +25,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tameraydin/generator-flux-react.git"
+    "url": "git://github.com/tameraydin/generator-flux-react-app.git"
   }
 }

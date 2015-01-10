@@ -6,7 +6,7 @@ var chalk = require('chalk');
 var FluxReactGenerator = yeoman.generators.Base.extend({
   initializing: function () {
     this.log(yosay(
-      'Thanks for using Flux-React-Generator! Your project will be ready in seconds...'
+      'Thanks for using Flux-React generator! Your project will be ready in seconds...'
     ));
   },
 
@@ -44,7 +44,7 @@ var FluxReactGenerator = yeoman.generators.Base.extend({
 
   end: function () {
     this.log(yosay(
-      'Almost done! Need help? Check out ' + chalk.red('http://github.com/tameraydin/generator-flux-react')
+      'Almost done! Need help? Check out ' + chalk.red('http://github.com/tameraydin/generator-flux-react-app')
     ));
 
     this.installDependencies({

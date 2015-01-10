@@ -7,13 +7,13 @@ Install [Yeoman](http://yeoman.io/) and Flux-React generator:
 
 ```bash
 npm install -g yo
-npm install -g generator-flux-react
+npm install -g generator-flux-react-app
 ```
 
 Initialize the generator:
 
 ```bash
-yo flux-react
+yo flux-react-app
 ```
 
 ## Usage
