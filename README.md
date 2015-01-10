@@ -1,11 +1,23 @@
-# Flux-react-boilerplate
+# Flux-React Boilerplate
 
 This is a [Flux](http://facebook.github.io/flux/) application boilerplate that I created when I was playing around with [this](http://github.com/eggheadio/egghead-react-flux-example) nice example app and experimenting on [Gulp](http://gulpjs.com/) & [React.js](http://facebook.github.io/react/). Basically it profits from [Browserify](http://browserify.org/) & [SASS](http://sass-lang.com/) and also allows to write ES6 via [6to5](https://6to5.org/).
 
-Usage:
-- Install Gulp: ``npm install --global gulp``
-- Navigate to folder and install dependencies: ``npm install``
-- Run Build: ``gulp build`` (``deploy`` for production, ``watch`` for continuous development)
-- Install [httpster](http://httpster.net/): ``npm install --global httpster``
-- Navigate to **/build** and run: ``npm httpster``
-- [http://localhost:3333/](http://localhost:3333/)
+## Getting Started
+Install [Yeoman](http://yeoman.io/) and Flux-React generator:
+
+```bash
+npm install -g yo
+npm install -g generator-flux-react
+```
+
+Initialize the generator:
+
+```bash
+yo flux-react
+```
+
+## Usage
+1. Run Build: ``gulp build`` (``deploy`` for production, ``watch`` for continuous development)
+2. Install [httpster](http://httpster.net/): ``npm install --g httpster``
+3. Navigate to **/build** and run: ``npm httpster``
+4. [http://localhost:3333/](http://localhost:3333/)
