@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var runSequence = require('gulp-run-sequence');
 var clean = require('gulp-clean');
 var browserify = require('browserify');
@@ -16,6 +17,12 @@ var packageJSON  = require('./package');
 var jshintConfig = packageJSON.jshintConfig;
 var react = require('gulp-react');
 var cache = require('gulp-cached');
+
+function errHandle(err) {
+  gutil.log('OOPS', gutil.colors.red(err.message));
+  gutil.beep();
+  this.emit('end');
+};
 
 var PATHS = {
   SOURCE: './src/',
@@ -50,12 +57,7 @@ gulp.task('css', function () {
 gulp.task('jshint', function() {
   return gulp.src(PATHS.SOURCE + 'js/**/*.js')
     .pipe(cache('jshint'))
-    .pipe(react())
-    .on('error', function(err) {
-      console.error('JSX ERROR in ' + err.fileName);
-      console.error(err.message);
-      this.end();
-    })
+    .pipe(react()).on('error', errHandle)
     .pipe(jshint(jshintConfig))
     .pipe(jshint.reporter('default'))
     .pipe(jshint.reporter('fail'));
@@ -63,7 +65,7 @@ gulp.task('jshint', function() {
 
 gulp.task('es6to5', function() {
   return gulp.src(PATHS.SOURCE + 'js/**/*.js')
-    .pipe(to5())
+    .pipe(to5()).on('error', errHandle)
     .pipe(gulp.dest(PATHS.BUILD + 'js/es5'));
 });
 
@@ -77,7 +79,7 @@ gulp.task('browserify', ['es6to5'], function() {
       entries: [PATHS.BUILD + 'js/es5/main.js'],
       debug: development
     })
-    .bundle()
+    .bundle().on('error', errHandle)
     .pipe(source('js/main.js'))
     .pipe(gulp.dest(PATHS.BUILD));
 });

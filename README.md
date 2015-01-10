@@ -28,7 +28,6 @@ MIT [http://tameraydin.mit-license.org/](http://tameraydin.mit-license.org/)
 
 ## TODO
 - Include testing framework ([Jest](https://facebook.github.io/jest/))
-- Improve uglify task: watch process should not break.
 - Add [JSCS](https://github.com/jscs-dev/gulp-jscs/) Gulp task
 - Add Gulp task for [Image Optimization](https://github.com/sindresorhus/gulp-imagemin)
 - Add Gulp task for [CSS sprite automation](https://github.com/gobwas/gulp-sprite-generator)
