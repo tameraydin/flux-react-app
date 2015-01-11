@@ -50,7 +50,7 @@ gulp.task('img', function() {
 
 gulp.task('css', function () {
   return gulp.src(PATHS.SOURCE + 'css/*.scss')
-    .pipe(sass())
+    .pipe(sass()).on('error', errHandle)
     .pipe(gulp.dest(PATHS.BUILD + 'css/'));
 });
 
