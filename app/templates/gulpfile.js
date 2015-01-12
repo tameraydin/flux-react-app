@@ -56,9 +56,8 @@ gulp.task('css', function () {
 
 gulp.task('jshint', function() {
   return gulp.src(PATHS.SOURCE + 'js/**/*.js')
-    .pipe(cache('jshint'))
     .pipe(react()).on('error', errHandle)
-    .pipe(jshint(jshintConfig))
+    .pipe(jshint(jshintConfig)).on('error', errHandle)
     .pipe(jshint.reporter('default'))
     .pipe(jshint.reporter('fail'));
 });
