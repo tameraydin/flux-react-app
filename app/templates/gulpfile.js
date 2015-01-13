@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var runSequence = require('gulp-run-sequence');
-var clean = require('gulp-clean');
+var del = require('del');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var reactify = require('reactify');
@@ -39,9 +39,8 @@ var SOURCE = {
 var development = true;
 var deploying = false;
 
-gulp.task('clean', function() {
-  return gulp.src(PATH.BUILD + '**/*.*', {read: false})
-    .pipe(clean({force: true}));
+gulp.task('clean', function(cb) {
+  del([PATH.BUILD], cb);
 });
 
 gulp.task('html', function() {
@@ -74,9 +73,8 @@ gulp.task('es6to5', function() {
     .pipe(gulp.dest(PATH.BUILD + 'js/es5'));
 });
 
-gulp.task('cleanJs', function() {
-  return gulp.src(PATH.BUILD + 'js/es5/')
-    .pipe(clean());
+gulp.task('cleanJs', function(cb) {
+  del([PATH.BUILD + 'js/es5/'], cb);
 });
 
 gulp.task('browserify', ['es6to5'], function() {
