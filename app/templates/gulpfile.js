@@ -12,6 +12,7 @@ var minifyCss = require('gulp-minify-css');
 var sass = require('gulp-sass');
 var usemin = require('gulp-usemin');
 var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 var to5 = require('gulp-6to5'); // this also handles JSX transform
 var packageJSON  = require('./package');
 var jshintConfig = packageJSON.jshintConfig;
@@ -24,63 +25,68 @@ function errHandle(err) {
   this.emit('end');
 };
 
-var PATHS = {
+var PATH = {
   SOURCE: './src/',
   DIST: './dist/',
   BUILD: './build/'
+};
+
+var SOURCE = {
+  STYLESHEETS: PATH.SOURCE + 'css/*.scss',
+  SCRIPTS: PATH.SOURCE + 'js/**/*.js',
 };
 
 var development = true;
 var deploying = false;
 
 gulp.task('clean', function() {
-  return gulp.src(PATHS.BUILD + '**/*.*', {read: false})
+  return gulp.src(PATH.BUILD + '**/*.*', {read: false})
     .pipe(clean({force: true}));
 });
 
 gulp.task('html', function() {
-  return gulp.src(PATHS.SOURCE + '*.html')
-    .pipe(gulp.dest(PATHS.BUILD));
+  return gulp.src(PATH.SOURCE + '*.html')
+    .pipe(gulp.dest(PATH.BUILD));
 });
 
 gulp.task('img', function() {
-  return gulp.src(PATHS.SOURCE + 'img/*.*')
-    .pipe(gulp.dest(PATHS.BUILD + 'img/'));
+  return gulp.src(PATH.SOURCE + 'img/*.*')
+    .pipe(gulp.dest(PATH.BUILD + 'img/'));
 });
 
 gulp.task('css', function () {
-  return gulp.src(PATHS.SOURCE + 'css/*.scss')
+  return gulp.src(PATH.SOURCE + 'css/*.scss')
     .pipe(sass()).on('error', errHandle)
-    .pipe(gulp.dest(PATHS.BUILD + 'css/'));
+    .pipe(gulp.dest(PATH.BUILD + 'css/'));
 });
 
 gulp.task('jshint', function() {
-  return gulp.src(PATHS.SOURCE + 'js/**/*.js')
+  return gulp.src(PATH.SOURCE + 'js/**/*.js')
     .pipe(react()).on('error', errHandle)
-    .pipe(jshint(jshintConfig)).on('error', errHandle)
-    .pipe(jshint.reporter('default'))
+    .pipe(jshint(jshintConfig))
+    .pipe(jshint.reporter(stylish))
     .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('es6to5', function() {
-  return gulp.src(PATHS.SOURCE + 'js/**/*.js')
+  return gulp.src(PATH.SOURCE + 'js/**/*.js')
     .pipe(to5()).on('error', errHandle)
-    .pipe(gulp.dest(PATHS.BUILD + 'js/es5'));
+    .pipe(gulp.dest(PATH.BUILD + 'js/es5'));
 });
 
 gulp.task('cleanJs', function() {
-  return gulp.src(PATHS.BUILD + 'js/es5/')
+  return gulp.src(PATH.BUILD + 'js/es5/')
     .pipe(clean());
 });
 
 gulp.task('browserify', ['es6to5'], function() {
   return browserify({
-      entries: [PATHS.BUILD + 'js/es5/main.js'],
+      entries: [PATH.BUILD + 'js/es5/main.js'],
       debug: development
     })
     .bundle().on('error', errHandle)
     .pipe(source('js/main.js'))
-    .pipe(gulp.dest(PATHS.BUILD));
+    .pipe(gulp.dest(PATH.BUILD));
 });
 
 gulp.task('js', function(cb) {
@@ -93,17 +99,18 @@ gulp.task('js', function(cb) {
 });
 
 gulp.task('usemin', function() {
-  return gulp.src(PATHS.BUILD + 'index.html')
+  return gulp.src(PATH.BUILD + 'index.html')
     .pipe(usemin({
-      css: [minifyCss(), 'concat'],
+      css: [minifyCss()],
       html: [minifyHtml({empty: true})],
       js: [uglify()]
     }))
-    .pipe(gulp.dest(PATHS.DIST));
+    .pipe(gulp.dest(PATH.DIST));
 });
 
 gulp.task('watch', function() {
-  gulp.watch(PATHS.SOURCE + '**/*.*', ['build']);
+  gulp.watch(SOURCE.STYLESHEETS, ['css']);
+  gulp.watch(SOURCE.SCRIPTS, ['js']);
 });
 
 gulp.task('build', function(cb) {
