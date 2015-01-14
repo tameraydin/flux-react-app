@@ -1,6 +1,6 @@
 {
   "name": "generator-flux-react-app",
-  "version": "0.1.3",
+  "version": "0.2.3",
   "description": "A React application boilerplate with Flux architecture",
   "keywords": [
     "yeoman-generator",
