@@ -12,6 +12,7 @@ var minifyCss = require('gulp-minify-css');
 var sass = require('gulp-sass');
 var usemin = require('gulp-usemin');
 var jshint = require('gulp-jshint');
+var jsxcs = require('gulp-jsxcs');
 var stylish = require('jshint-stylish');
 var to5 = require('gulp-6to5'); // this also handles JSX transform
 var packageJSON  = require('./package');
@@ -67,6 +68,13 @@ gulp.task('jshint', function() {
     .pipe(jshint.reporter('fail'));
 });
 
+gulp.task('jsxcs', function() {
+  return gulp.src(PATH.SOURCE + 'js/**/*.js')
+    .pipe(jsxcs({
+      'validateIndentation': 2
+    }));
+});
+
 gulp.task('es6to5', function() {
   return gulp.src(PATH.SOURCE + 'js/**/*.js')
     .pipe(to5()).on('error', errHandle)
@@ -90,6 +98,7 @@ gulp.task('browserify', ['es6to5'], function() {
 gulp.task('js', function(cb) {
   return runSequence(
     'jshint',
+    'jsxcs',
     'es6to5',
     'browserify',
     'cleanJs',
