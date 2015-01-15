@@ -35,6 +35,7 @@ var PATH = {
 var SOURCE = {
   STYLESHEETS: PATH.SOURCE + 'css/*.scss',
   SCRIPTS: PATH.SOURCE + 'js/**/*.js',
+  TEMPLATES: PATH.SOURCE + '*.html'
 };
 
 var development = true;
@@ -118,6 +119,7 @@ gulp.task('usemin', function() {
 gulp.task('watch', function() {
   gulp.watch(SOURCE.STYLESHEETS, ['css']);
   gulp.watch(SOURCE.SCRIPTS, ['js']);
+  gulp.watch(SOURCE.TEMPLATES, ['html']);
 });
 
 gulp.task('build', function(cb) {
