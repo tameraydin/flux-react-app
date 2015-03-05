@@ -13,6 +13,7 @@ npm install -g generator-flux-react-app
 Initialize the generator:
 
 ```bash
+# if possible: nvm use 0.10
 yo flux-react-app
 ```
 
