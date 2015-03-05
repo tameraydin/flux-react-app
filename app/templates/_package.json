@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "description": "My flux application",
+  "scripts": {
+    "build": "NODE_ENV=development gulp build",
+    "dist": "NODE_ENV=production gulp dist"
+  },
   "dependencies": {
     "flux": "^2.0.1",
     "object-assign": "^2.0.0",
@@ -22,13 +26,13 @@
     "gulp-minify-html": "^0.1.8",
     "gulp-react": "^2.0.0",
     "gulp-rename": "^1.2.0",
-    "gulp-run-sequence": "^0.3.2",
     "gulp-sass": "^1.2.4",
     "gulp-uglify": "^1.0.2",
     "gulp-usemin": "^0.3.8",
     "gulp-util": "^3.0.2",
     "jshint-stylish": "^1.0.0",
     "reactify": "^0.13.2",
+    "run-sequence": "^1.0.2",
     "vinyl-source-stream": "^1.0.0"
   },
   "jshintConfig": {

@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var runSequence = require('gulp-run-sequence');
+var runSequence = require('run-sequence');
 var del = require('del');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
@@ -39,7 +39,7 @@ var SOURCE = {
 };
 
 var development = true;
-var deploying = false;
+var dist = false;
 
 gulp.task('clean', function(cb) {
   del([PATH.BUILD], cb);
@@ -123,7 +123,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('build', function(cb) {
-  development = deploying ? false : true;
+  development = dist ? false : true;
   return runSequence(
     'clean',
     'html',
@@ -133,7 +133,7 @@ gulp.task('build', function(cb) {
     cb);
 });
 
-gulp.task('deploy', function(cb) {
+gulp.task('dist', function(cb) {
   deploying = true;
   return runSequence(
     'build',

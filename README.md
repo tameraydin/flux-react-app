@@ -17,7 +17,7 @@ yo flux-react-app
 ```
 
 ## Usage
-1. Run Build: ``gulp build`` (``deploy`` for production, ``watch`` for continuous development)
+1. Run Build: ``gulp build`` (``dist`` for production, ``watch`` for continuous development)
 2. Install [httpster](http://httpster.net/): ``npm install --g httpster``
 3. Navigate to **/build** and run: ``npm httpster``
 4. [http://localhost:3333/](http://localhost:3333/)
