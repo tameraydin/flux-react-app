@@ -65,8 +65,7 @@ gulp.task('jshint', function() {
   return gulp.src(PATH.SOURCE + 'js/**/*.js')
     .pipe(react()).on('error', errHandle)
     .pipe(jshint(jshintConfig))
-    .pipe(jshint.reporter(stylish))
-    .pipe(jshint.reporter('fail'));
+    .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('jsxcs', function() {
