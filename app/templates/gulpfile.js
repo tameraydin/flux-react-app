@@ -116,7 +116,6 @@ gulp.task('js', function(cb) {
   return runSequence(
     'jshint',
     'jsxcs',
-    'es6to5',
     'browserify',
     'cleanJs',
     cb);
