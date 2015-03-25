@@ -23,6 +23,9 @@ yo flux-react-app
 3. Navigate to **/build** and run: ``npm httpster``
 4. [http://localhost:3333/](http://localhost:3333/)
 
+## Live Examples
+- [kolor.io](https://github.com/tameraydin/kolor.io)
+
 ## License
 
 MIT [http://tameraydin.mit-license.org/](http://tameraydin.mit-license.org/)
