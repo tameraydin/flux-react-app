@@ -14,11 +14,12 @@ var usemin = require('gulp-usemin');
 var jshint = require('gulp-jshint');
 var jsxcs = require('gulp-jsxcs');
 var stylish = require('jshint-stylish');
-var to5 = require('gulp-6to5'); // this also handles JSX transform
-var packageJSON  = require('./package');
+var babel = require('gulp-babel');
+var packageJSON = require('./package');
 var jshintConfig = packageJSON.jshintConfig;
 var react = require('gulp-react');
 var cache = require('gulp-cached');
+var wait = require('gulp-wait');
 
 function errHandle(err) {
   gutil.log('OOPS', gutil.colors.red(err.message));
@@ -72,7 +73,7 @@ gulp.task('imgDist', function() {
     .pipe(gulp.dest(PATH.DIST + 'img/'));
 });
 
-gulp.task('css', function () {
+gulp.task('css', function() {
   return gulp.src(SOURCE.STYLESHEETS)
     .pipe(sass()).on('error', errHandle)
     .pipe(gulp.dest(PATH.BUILD + 'css/'));
@@ -92,9 +93,10 @@ gulp.task('jsxcs', function() {
     }));
 });
 
-gulp.task('es6to5', function() {
+gulp.task('babel', function() {
   return gulp.src(SOURCE.SCRIPTS)
-    .pipe(to5()).on('error', errHandle)
+    .pipe(babel()).on('error', errHandle)
+    .pipe(wait(1000))
     .pipe(gulp.dest(PATH.BUILD + 'js/es5'));
 });
 
@@ -102,7 +104,7 @@ gulp.task('cleanJs', function(cb) {
   return del([PATH.BUILD + 'js/es5/'], cb);
 });
 
-gulp.task('browserify', ['es6to5'], function() {
+gulp.task('browserify', ['babel'], function() {
   return browserify({
       entries: [PATH.BUILD + 'js/es5/main.js'],
       debug: development

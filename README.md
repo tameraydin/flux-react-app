@@ -1,6 +1,6 @@
 # Flux-React Boilerplate
 
-This is a [Flux](http://facebook.github.io/flux/) application boilerplate that I created when I was playing around with [this](http://github.com/eggheadio/egghead-react-flux-example) nice example app and experimenting on [Gulp](http://gulpjs.com/) & [React.js](http://facebook.github.io/react/). Basically it profits from [Browserify](http://browserify.org/) & [SASS](http://sass-lang.com/) and also allows to write ES6 via [6to5](https://6to5.org/).
+This is a [Flux](http://facebook.github.io/flux/) application boilerplate that I created when I was playing around with [this](http://github.com/eggheadio/egghead-react-flux-example) nice example app and experimenting on [Gulp](http://gulpjs.com/) & [React.js](http://facebook.github.io/react/). Basically it profits from [Browserify](http://browserify.org/) & [SASS](http://sass-lang.com/) and also allows to write ES6 via [Babel](http://babeljs.io).
 
 ## Getting Started
 Install [Yeoman](http://yeoman.io/) and Flux-React generator:
